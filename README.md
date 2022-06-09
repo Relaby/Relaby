@@ -1,0 +1,1 @@
+[![image](https://user-images.githubusercontent.com/64512296/172746429-7c380ecb-a711-458d-8b4f-2e84d6c2efcb.png)](https://raw.githubusercontent.com/PeytonPlayz595/Trident-Client/main/stable-download/Offline_Download_Version.html.html)
