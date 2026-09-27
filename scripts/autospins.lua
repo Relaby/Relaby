@@ -1,9 +1,10 @@
-
+```lua
 --==================================================
 -- DQ REBORN
 --==================================================
 
--- documentation https://raw.githubusercontent.com/Relaby/Dear-ReGui/refs/heads/main/readme.md
+-- documentation
+-- https://raw.githubusercontent.com/Relaby/Dear-ReGui/refs/heads/main/readme.md
 
 local ReGui = loadstring(game:HttpGet(
     "https://raw.githubusercontent.com/hunterss25/Dear-ReGui/refs/heads/main/ReGui.lua"
@@ -15,7 +16,6 @@ local ReGui = loadstring(game:HttpGet(
 
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
 local LocalPlayer = Players.LocalPlayer
 local PlayerName = LocalPlayer.Name
 local UserId = tostring(LocalPlayer.UserId)
@@ -40,7 +40,6 @@ end
 --==================================================
 
 local Remotes = ReplicatedStorage:WaitForChild("remotes")
-
 local ReloadFunction = Remotes:WaitForChild("reloadInvy")
 local SellEvent = Remotes:WaitForChild("sellItemEvent")
 
@@ -72,7 +71,6 @@ local BlacklistedItems = {}
 --==================================================
 -- CONSOLE
 --==================================================
-
 
 local ConsoleColors = {
     INFO = "100,200,255",
@@ -125,11 +123,9 @@ local AdvancedConsole = ConsoleWindow:Console({
 
 local function EscapeRichText(Value)
     Value = tostring(Value or "")
-
     Value = Value:gsub("&", "&amp;")
     Value = Value:gsub("<", "&lt;")
     Value = Value:gsub(">", "&gt;")
-
     return Value
 end
 
@@ -144,7 +140,6 @@ local function ConsoleLog(Type, Message)
     Type = tostring(Type or "INFO")
 
     local Color = ConsoleColors[Type] or ConsoleColors.INFO
-
     local Time = EscapeRichText(GetTime())
     local SafeType = EscapeRichText(Type)
     local SafeMessage = EscapeRichText(Message)
@@ -219,9 +214,6 @@ local function ToggleConsole()
     end
 end
 
-
-                                
-
 --==================================================
 -- BLACKLIST FUNCTIONS
 --==================================================
@@ -246,7 +238,6 @@ end
 
 local function AddBlacklistItem(ItemName)
     ItemName = tostring(ItemName or "")
-
     ItemName = ItemName:gsub("^%s+", "")
     ItemName = ItemName:gsub("%s+$", "")
 
@@ -446,7 +437,6 @@ end
 
 local function SetAutoload(ConfigName)
     ConfigName = tostring(ConfigName or "")
-
     ConfigName = ConfigName:gsub("^%s+", "")
     ConfigName = ConfigName:gsub("%s+$", "")
 
@@ -511,8 +501,6 @@ local FarmOptions = MainWindow:CollapsingHeader({
     Title = "Farming",
 })
 
-
-
 local LobbyOptions = MainWindow:CollapsingHeader({
     Title = "Lobby",
 })
@@ -530,77 +518,89 @@ local SellOptions = MainWindow:CollapsingHeader({
 --==================================================
 
 FarmOptions:Separator()
+
 local FarmRow = FarmOptions:Row()
+
 FarmRow:Checkbox({
-        Label = "Auto Farm - Mob Distance:"
+    Label = "Auto Farm - Mob Distance:"
 })
 
 FarmRow:SliderInt({
-        Label = "",
-	Format = "%.d/%s",
-	Value = 5,
-	Minimum = 1,
-	Maximum = 32,
-	ReadOnly = false,
+    Label = "",
+    Format = "%.d/%s",
+    Value = 5,
+    Minimum = 1,
+    Maximum = 32,
+    ReadOnly = false,
 }):SetValue(8)
 
-
 local FarmRow2 = FarmOptions:Row()
+
 FarmRow2:Checkbox({
-        Label = "Auto Hit - Hit Delay (s):"
+    Label = "Auto Hit - Hit Delay (s):"
 })
+
 FarmRow2:DragFloat({
-        Label = "",
-	Maximum = 2,
-	Minimum = 0,
-	Value = 0.5
+    Label = "",
+    Maximum = 2,
+    Minimum = 0,
+    Value = 0.5
 })
+
 local FarmRow3 = FarmOptions:Row()
+
 FarmRow3:Checkbox({
-        Label = "Show Route "
+    Label = "Show Route "
 })
 
 FarmRow3:Checkbox({
-        Label = "Look At Mobs "
+    Label = "Look At Mobs "
 })
 
 FarmRow3:Checkbox({
-        Label = "Auto Start "
+    Label = "Auto Start "
 })
 
 FarmRow3:Checkbox({
-        Label = "Show Danger Zones "
+    Label = "Show Danger Zones "
 })
-
 
 FarmRow3:Checkbox({
-        Label = "Auto Cast Ability"
+    Label = "Auto Cast Ability"
 })
 
+--==================================================
+-- LOBBY SETTINGS
+--==================================================
 
 LobbyOptions:Separator()
+
 local LobbyRow = LobbyOptions:Row()
+
 LobbyRow:Checkbox({
-        Label = "Auto Start Best Dungeon  "
+    Label = "Auto Start Best Dungeon"
 })
 
 LobbyRow:Checkbox({
-        Label = "Claim Daily"
+    Label = "Claim Daily"
 })
 
 local LobbyRow2 = LobbyOptions:Row()
+
 LobbyRow2:Checkbox({
-        Label = "Dungeon Request Spam"
+    Label = "Dungeon Request Spam"
 })
+
 LobbyRow2:InputText({
-	Placeholder = "Enter username ",
-        Label = "",
-	Value = ""
+    Placeholder = "Enter username",
+    Label = "",
+    Value = ""
 })
 
 local LobbyRow3 = LobbyOptions:Row()
+
 LobbyRow3:Checkbox({
-        Label = "Raid Request Spam"
+    Label = "Raid Request Spam"
 })
 
 --==================================================
@@ -619,25 +619,21 @@ local RaritySettings = {
         Flag = "SellCommon",
         Key = "common",
     },
-
     {
         Label = "Uncommon",
         Flag = "SellUncommon",
         Key = "uncommon",
     },
-
     {
         Label = "Rare",
         Flag = "SellRare",
         Key = "rare",
     },
-
     {
         Label = "Epic",
         Flag = "SellEpic",
         Key = "epic",
     },
-
     {
         Label = "Legendary",
         Flag = "SellLeg",
@@ -679,19 +675,16 @@ local TypeSettings = {
         Flag = "HelmetType",
         Key = "helmet",
     },
-
     {
         Label = "Chestpieces",
         Flag = "ArmorType",
         Key = "chest",
     },
-
     {
         Label = "Weapons",
         Flag = "WeaponType",
         Key = "weapon",
     },
-
     {
         Label = "Spells",
         Flag = "SpellType",
@@ -772,9 +765,7 @@ local function RefreshBlacklist()
             Text = "Delete: " .. ItemName,
 
             Callback = function()
-                if RemoveBlacklistItem(
-                    CurrentIndex
-                ) then
+                if RemoveBlacklistItem(CurrentIndex) then
                     RefreshBlacklist()
                 end
             end,
@@ -891,12 +882,10 @@ local function ProcessInventoryCategory(
     for ItemKey, Item in pairs(
         InventoryCategory or {}
     ) do
-
         if Item
             and ShouldSellRarity(Item.rarity)
             and not IsBlacklisted(Item.name)
         then
-
             local Number = GetItemNumber(
                 ItemKey
             )
@@ -1148,16 +1137,16 @@ ViewMenu:Selectable({
                     )
                 end
             end,
-        }) 
-        UISettings:Keybind({
-         Value = Enum.KeyCode.K,
-         Label = "UI Visibility",
-
-        Callback = function()
-                MainWindow:ToggleVisibility()
-                end,
         })
-        
+
+        UISettings:Keybind({
+            Value = Enum.KeyCode.K,
+            Label = "UI Visibility",
+
+            Callback = function()
+                MainWindow:ToggleVisibility()
+            end,
+        })
 
         UISettings:Button({
             Text = "Close",
@@ -1166,8 +1155,6 @@ ViewMenu:Selectable({
                 UISettings:ClosePopup()
             end,
         })
-
-        
     end,
 })
 
@@ -1294,7 +1281,6 @@ FileMenu:Selectable({
                     return
                 end
 
-                -- Remove invalid filename characters.
                 ConfigName = ConfigName:gsub(
                     "[\\/:*?\"<>|]",
                     ""
@@ -1402,10 +1388,6 @@ local function OpenSavedConfigs()
         TextWrapped = true,
     })
 
-    --==================================================
-    -- GET CONFIG FILES
-    --==================================================
-
     local Files = {}
 
     local Success, Result =
@@ -1426,21 +1408,14 @@ local function OpenSavedConfigs()
 
     local ConfigCount = 0
 
-    --==================================================
-    -- CONFIGURATION LIST
-    --==================================================
-
     for _, FilePath in ipairs(Files) do
-
         if FilePath:lower():sub(-4) == ".ini" then
-
             local FileName =
                 FilePath:match(
                     "([^/\\]+)%.ini$"
                 )
 
             if FileName then
-
                 ConfigCount += 1
 
                 local DisplayName =
@@ -1452,17 +1427,9 @@ local function OpenSavedConfigs()
                         " [AUTOLOAD]"
                 end
 
-                --==================================================
-                -- CONFIG NAME
-                --==================================================
-
                 SavedModal:Separator({
                     Text = DisplayName,
                 })
-
-                --==================================================
-                -- BUTTON ROW
-                --==================================================
 
                 local ConfigRow =
                     SavedModal:Row()
@@ -1475,7 +1442,6 @@ local function OpenSavedConfigs()
                     Text = "Load",
 
                     Callback = function()
-
                         LogConfig(
                             "Loading configuration: " ..
                             FileName
@@ -1513,8 +1479,6 @@ local function OpenSavedConfigs()
 
                         RefreshBlacklist()
 
-                        -- Automatically remember
-                        -- the last loaded config.
                         local AutoSuccess,
                             AutoError =
                             SetLastLoadedConfig(
@@ -1545,7 +1509,6 @@ local function OpenSavedConfigs()
                     Text = "Copy",
 
                     Callback = function()
-
                         local ReadSuccess,
                             ConfigData =
                             ReadConfigFile(
@@ -1601,7 +1564,6 @@ local function OpenSavedConfigs()
                     Text = "Autoload",
 
                     Callback = function()
-
                         local SetSuccess,
                             SetError =
                             SetAutoload(
@@ -1643,11 +1605,7 @@ local function OpenSavedConfigs()
                     Text = "Delete",
 
                     Callback = function()
-
-                        -- If the deleted config was
-                        -- the startup config, clear it.
                         if GetAutoload() == FileName then
-
                             local ClearSuccess,
                                 ClearError =
                                 ClearAutoload()
@@ -1700,12 +1658,7 @@ local function OpenSavedConfigs()
         end
     end
 
-    --==================================================
-    -- EMPTY STATE
-    --==================================================
-
     if ConfigCount == 0 then
-
         SavedModal:Label({
             Text = "No saved configurations.",
             TextWrapped = true,
@@ -1714,19 +1667,13 @@ local function OpenSavedConfigs()
         LogConfig(
             "No saved configurations found."
         )
-
     else
-
         LogConfig(
             "Found " ..
             ConfigCount ..
             " saved configuration(s)."
         )
     end
-
-    --==================================================
-    -- CLOSE
-    --==================================================
 
     SavedModal:Button({
         Text = "Close",
@@ -1758,16 +1705,10 @@ FileMenu:Selectable({
 --==================================================
 
 task.defer(function()
-
     local AutoloadName =
         GetAutoload()
 
-    --==================================================
-    -- NO LAST CONFIG
-    --==================================================
-
     if not AutoloadName then
-
         LogAutoload(
             "No previously loaded configuration found."
         )
@@ -1780,22 +1721,13 @@ task.defer(function()
         AutoloadName
     )
 
-    --==================================================
-    -- BUILD PATH
-    --==================================================
-
     local AutoloadPath =
         ConfigFolder ..
         "/" ..
         AutoloadName ..
         ".ini"
 
-    --==================================================
-    -- CHECK FILE
-    --==================================================
-
     if not isfile(AutoloadPath) then
-
         LogWarn(
             "Last loaded configuration no longer exists: " ..
             AutoloadName
@@ -1815,10 +1747,6 @@ task.defer(function()
         return
     end
 
-    --==================================================
-    -- READ FILE
-    --==================================================
-
     local ReadSuccess,
         ConfigData =
         ReadConfigFile(
@@ -1826,7 +1754,6 @@ task.defer(function()
         )
 
     if not ReadSuccess then
-
         LogError(
             "Failed to read last loaded configuration: " ..
             AutoloadName
@@ -1835,10 +1762,6 @@ task.defer(function()
         return
     end
 
-    --==================================================
-    -- LOAD FILE
-    --==================================================
-
     local LoadSuccess,
         Error =
         LoadFullConfig(
@@ -1846,7 +1769,6 @@ task.defer(function()
         )
 
     if not LoadSuccess then
-
         LogError(
             "Failed to load last loaded configuration: " ..
             tostring(Error)
@@ -1854,10 +1776,6 @@ task.defer(function()
 
         return
     end
-
-    --==================================================
-    -- REFRESH UI
-    --==================================================
 
     RefreshBlacklist()
 
@@ -1871,6 +1789,64 @@ task.defer(function()
         ")"
     )
 end)
+
+--==================================================
+-- AUTOSPINS LOADER
+--==================================================
+
+local ScriptURL =
+    "https://raw.githubusercontent.com/Relaby/Relaby/refs/heads/main/scripts/autospins.lua"
+
+local AutoSpinsLoader = [[
+loadstring(game:HttpGet("]] .. ScriptURL .. [["))()
+]]
+
+local function LoadAutoSpins()
+    LogAutoload(
+        "Loading AutoSpins..."
+    )
+
+    local Success, Error =
+        pcall(function()
+            loadstring(AutoSpinsLoader)()
+        end)
+
+    if Success then
+        LogSuccess(
+            "AutoSpins loaded successfully."
+        )
+    else
+        LogError(
+            "Failed to load AutoSpins: " ..
+            tostring(Error)
+        )
+    end
+
+    if queueonteleport then
+        local QueueSuccess,
+            QueueError =
+            pcall(function()
+                queueonteleport(
+                    AutoSpinsLoader
+                )
+            end)
+
+        if QueueSuccess then
+            LogAutoload(
+                "AutoSpins queued for teleport."
+            )
+        else
+            LogWarn(
+                "Failed to queue AutoSpins: " ..
+                tostring(QueueError)
+            )
+        end
+    else
+        LogWarn(
+            "queueonteleport is not supported."
+        )
+    end
+end
 
 --==================================================
 -- STARTUP
@@ -1893,3 +1869,8 @@ Log(
 LogSuccess(
     "DQ Reborn initialized successfully."
 )
+
+task.defer(function()
+    LoadAutoSpins()
+end)
+```
