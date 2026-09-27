@@ -1812,7 +1812,39 @@ Log(
 LogSuccess(
     "DQ Reborn initialized successfully."
 )
+LogSuccess(
+    "DQ Reborn initialized successfully."
+)
 
-task.defer(function()
-    LoadAutoSpins()
-end)
+--==================================================
+-- QUEUE DQ REBORN ON TELEPORT
+--==================================================
+
+local DQRebornURL =
+    "https://raw.githubusercontent.com/Relaby/Relaby/refs/heads/main/scripts/dqreborn.lua"
+
+local DQRebornLoader = [[
+loadstring(game:HttpGet("]] .. DQRebornURL .. [["))()
+]]
+
+if queueonteleport then
+    local Success, Error = pcall(function()
+        queueonteleport(DQRebornLoader)
+    end)
+
+    if Success then
+        LogAutoload(
+            "DQ Reborn queued for teleport."
+        )
+    else
+        LogError(
+            "Failed to queue DQ Reborn: " ..
+            tostring(Error)
+        )
+    end
+else
+    LogWarn(
+        "queueonteleport is not supported."
+    )
+end
+
