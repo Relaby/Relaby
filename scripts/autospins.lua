@@ -3,6 +3,8 @@
 -- DQ REBORN
 --==================================================
 
+-- documentation https://raw.githubusercontent.com/Relaby/Dear-ReGui/refs/heads/main/readme.md
+
 local ReGui = loadstring(game:HttpGet(
     "https://raw.githubusercontent.com/hunterss25/Dear-ReGui/refs/heads/main/ReGui.lua"
 ))()
@@ -70,6 +72,7 @@ local BlacklistedItems = {}
 --==================================================
 -- CONSOLE
 --==================================================
+
 
 local ConsoleColors = {
     INFO = "100,200,255",
@@ -215,6 +218,9 @@ local function ToggleConsole()
         Log("Console opened.")
     end
 end
+
+
+                                
 
 --==================================================
 -- BLACKLIST FUNCTIONS
@@ -1142,7 +1148,16 @@ ViewMenu:Selectable({
                     )
                 end
             end,
+        }) 
+        UISettings:Keybind({
+         Value = Enum.KeyCode.K,
+         Label = "UI Visibility",
+
+        Callback = function()
+                MainWindow:ToggleVisibility()
+                end,
         })
+        
 
         UISettings:Button({
             Text = "Close",
@@ -1151,6 +1166,8 @@ ViewMenu:Selectable({
                 UISettings:ClosePopup()
             end,
         })
+
+        
     end,
 })
 
